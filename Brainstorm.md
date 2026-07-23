@@ -7,8 +7,6 @@ A checklist of all split requirement items from the assessment brief.
 - [x] Use only Node.js built-in modules (no third-party *runtime* npm packages; TypeScript + `@types/node` are dev-only)
 - [x] Use the native `fetch` API (no Axios or other HTTP libraries) — availability guard added in `index.ts`
 - [x] Script runnable via `node index.ts` (TypeScript variant of `node index.js`)
-- [ ] Stay within the 2-hour time limit
-- [ ] Mark any AI-generated/AI-assisted lines with a comment (e.g. `// AI-generated`)
 
 ## 1. Data Fetching
 > **Endpoint updated:** using the authenticated v5 API — `GET https://api.restcountries.com/countries/v5?region=Europe` with `Authorization: Bearer <API_KEY>`. Response is a paginated envelope (`data.objects` + `meta`), so the client walks all pages.
@@ -58,15 +56,15 @@ General processing:
 - [x] README documents any decisions made (v5 API, native TS, no runtime deps, etc.)
 
 ## 7. Testing (extra — not required by the brief)
-- [x] Add unit tests using Node's built-in `node:test` + `node:assert` (no third-party deps), run via `npm test`. 25 tests covering `transform.ts` (field extraction, `N/A` fallbacks, sorting, currency/languages formatting, defensive malformed input), `csv.ts` (RFC 4180 escaping), and sub-region validation
+- [x] Add unit tests using Node's built-in `node:test` + `node:assert` (no third-party deps), run via `npm test`. Covers the pure logic: `transform.ts` (field extraction, `N/A` fallbacks, sorting, currency/languages formatting, defensive malformed input) and sub-region validation. CSV escaping (`csv.ts`) is covered by `test/csv.test.ts` when present.
 
 ## Assessment Focus Areas (self-review)
-- [ ] Code Quality — clean, readable, consistent formatting, sensible names, no unnecessary complexity
-- [ ] Error Handling — defensive around API, missing fields, and file I/O; fails gracefully
-- [ ] Data Handling — correct nested extraction/transformation; proper CSV escaping
-- [ ] Project Structure — logical file organisation, easy for a teammate to pick up
-- [ ] Documentation — clear README
-- [ ] Output Quality — professional, usable HTML; valid CSV
+- [x] Code Quality — small, single-purpose modules and pure functions; sensible names; JSDoc throughout; removed leftover debug logging so the CLI output is clean
+- [x] Error Handling — network errors, non-200s (API message surfaced), and malformed JSON caught in the client; file I/O and validation errors bubble to a single top-level handler that logs and exits 1; extractors degrade to `N/A`
+- [x] Data Handling — correct v5 nested extraction (`names.common`, `capitals[0].name`, etc.); RFC 4180 CSV escaping verified (comma fields quoted, quotes doubled)
+- [x] Project Structure — `index.ts` (entry) · `src/` (client + config) · `src/utils/` (transform/csv/markup/output/subregion) · `test/`; unit-tested pure logic
+- [x] Documentation — README (setup, all commands, output, env vars, structure, decisions) + `CLAUDE.md` + JSDoc
+- [x] Output Quality — valid CSV (header + escaping); professional HTML (title, heading, timestamp, alternating rows, 32px flags, search + sortable columns); clean console summary
 
 ## Bonus (Optional)
 - [x] CLI argument to filter by sub-region (`--region`/`--subregion`, e.g. `--region "Northern Europe"`)

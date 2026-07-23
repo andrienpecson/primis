@@ -68,8 +68,6 @@ export default class RestCountriesApi {
     let offset = 0;
 
     for (let page = 0; page < this.maxPages; page++) {
-      console.log(`Fetching Request on Page: ${page + 1}`);
-
       const params = new URLSearchParams({
         region,
         limit: String(this.pageSize),
@@ -96,7 +94,6 @@ export default class RestCountriesApi {
       countries.push(...objects);
 
       if (meta?.more !== true || objects.length === 0) {
-        console.log("No more data found on this page.")
         break;
       }
       offset += objects.length;
