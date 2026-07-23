@@ -1,0 +1,17 @@
+{
+  "name": "primis-countries-report",
+  "version": "1.0.0",
+  "description": "CLI that fetches European country data from the REST Countries API and generates styled HTML and CSV reports.",
+  "type": "module",
+  "engines": {
+    "node": ">=23.6"
+  },
+  "scripts": {
+    "start": "node index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    // Target/module settings aligned with Node 23.6+ native TypeScript execution.
+    "target": "esnext",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "lib": ["esnext"],
+    "types": ["node"],
+
+    // Required for Node's native type stripping: imports keep their .ts extension,
+    // and only fully-erasable TypeScript syntax is permitted (no enums, namespaces,
+    // parameter properties, etc.).
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
+    "verbatimModuleSyntax": true,
+    "erasableSyntaxOnly": true,
+
+    // Type-check only; Node runs the .ts files directly, so we never emit JS.
+    "noEmit": true,
+
+    // Strictness for a small, correct codebase.
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "output"]
+}
