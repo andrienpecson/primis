@@ -18,6 +18,14 @@ const COLUMNS: Column[] = [
 
 const PAGE_TITLE = "European Countries Report";
 
+/**
+ * Builds the full HTML report document (a single styled table with search and
+ * sortable columns). All dynamic values are HTML-escaped.
+ *
+ * @param rows Processed country rows to render.
+ * @param generatedAt Timestamp shown on the page (defaults to now).
+ * @returns The complete HTML document as a string.
+ */
 export function toHtml(rows: CountryRow[], generatedAt: Date = new Date()): string {
   const headerCells = COLUMNS.map(toHeaderCell).join("");
   const bodyRows = rows.map(toTableRow).join("\n");
@@ -155,6 +163,7 @@ ${bodyRows}
 `;
 };
 
+/** Renders a header cell; sortable columns get a data-index and sort indicator. */
 function toHeaderCell(column: Column, index: number): string {
   if (!column.sortable) {
     return `<th>${escapeHtml(column.label)}</th>`;
@@ -163,6 +172,7 @@ function toHeaderCell(column: Column, index: number): string {
   return `<th class="sortable" data-index="${index}"${typeAttr}>${escapeHtml(column.label)}<span class="sort-indicator"></span></th>`;
 };
 
+/** Renders one table row for a country, with the flag as an image cell. */
 function toTableRow(row: CountryRow): string {
   return `      <tr>
         <td>${escapeHtml(row.name)}</td>
@@ -181,6 +191,7 @@ function flagCell(row: CountryRow): string {
   return `<img src="${escapeHtml(row.flagUrl)}" width="32" alt="${alt}" loading="lazy">`;
 };
 
+/** Formats a date as a human-readable "generated at" timestamp. */
 function formatTimestamp(date: Date): string {
   return date.toLocaleString("en-GB", { dateStyle: "long", timeStyle: "long" });
 };

@@ -1,7 +1,4 @@
 // AI-generated (authored with Claude): environment/configuration loading.
-//
-// Loads variables from .env using Node's built-in loader — no third-party
-// dotenv dependency. Available since Node 20.12 / 21.7; this project targets 24.
 
 function loadEnvFileIfPresent(): void {
   try {

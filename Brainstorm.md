@@ -57,6 +57,9 @@ General processing:
 - [x] Clear README with instructions to run the project (setup + all commands)
 - [x] README documents any decisions made (v5 API, native TS, no runtime deps, etc.)
 
+## 7. Testing (extra — not required by the brief)
+- [x] Add unit tests using Node's built-in `node:test` + `node:assert` (no third-party deps), run via `npm test`. 25 tests covering `transform.ts` (field extraction, `N/A` fallbacks, sorting, currency/languages formatting, defensive malformed input), `csv.ts` (RFC 4180 escaping), and sub-region validation
+
 ## Assessment Focus Areas (self-review)
 - [ ] Code Quality — clean, readable, consistent formatting, sensible names, no unnecessary complexity
 - [ ] Error Handling — defensive around API, missing fields, and file I/O; fails gracefully

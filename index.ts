@@ -1,15 +1,13 @@
-import { parseArgs } from "node:util";
 import RestCountriesApi from "./src/RestCountriesApi.ts";
 import { processCountries } from "./src/utils/transform.ts";
 import { toCsv } from "./src/utils/csv.ts";
 import { toHtml } from "./src/utils/markup.ts";
 import { writeOutputFile, OUTPUT_DIR } from "./src/utils/output.ts";
+import { getSubregionArg } from "./src/utils/subregion.ts";
 import { REGION } from "./src/config.ts";
 
-// constants
 const EXIT_SUCCESS = 0;
 const EXIT_FAILURE = 1;
-
 const DEFAULT_REGION = "Europe";
 const COUNTRY_FIELDS = [
   "names.common",
@@ -21,40 +19,8 @@ const COUNTRY_FIELDS = [
   "flag.url_png",
 ];
 
-const VALID_SUBREGIONS = [
-  "Central Europe",
-  "Eastern Europe",
-  "Northern Europe",
-  "Southeast Europe",
-  "Southern Europe",
-  "Western Europe",
-];
-
-function parseCliOptions(): { subregion?: string } {
-  const { values } = parseArgs({
-    options: {
-      subregion: { type: "string" },
-    },
-  });
-  const subregion = values.subregion?.trim() || undefined;
-  return { subregion };
-};
-
-function resolveSubregion(input: string): string {
-  const match = VALID_SUBREGIONS.find(
-    (valid) => valid.toLowerCase() === input.toLowerCase()
-  );
-  if (!match) {
-    throw new Error(
-      `Invalid sub-region "${input}". Valid options: ${VALID_SUBREGIONS.join(", ")}.`
-    );
-  }
-  return match;
-};
-
 async function main(): Promise<void> {
-  const { subregion: rawSubregion } = parseCliOptions();
-  const subregion = rawSubregion ? resolveSubregion(rawSubregion) : undefined;
+  const subregion = getSubregionArg();
 
   const region = REGION ?? DEFAULT_REGION;
   const api = new RestCountriesApi();

@@ -62,8 +62,22 @@ An invalid value fails fast (before any network call) and exits with code 1.
 ### Other commands
 
 ```bash
+npm test                                # run the unit tests
 npm run typecheck                       # type-check without running
 open output/countries-europe.html       # view the report (macOS)
+```
+
+## Tests
+
+Unit tests use Node's built-in test runner (`node:test` + `node:assert`) — no
+test framework or third-party dependencies. They cover the pure logic:
+data transformation (field extraction, `N/A` fallbacks, formatting, sorting),
+CSV escaping, and sub-region validation.
+
+```bash
+npm test
+# or directly:
+node --test
 ```
 
 ## Output
