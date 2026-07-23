@@ -44,7 +44,8 @@ export default class RestCountriesApi {
 
   public async fetchCountriesByRegion(
     region: string,
-    fields: string[] = []
+    fields: string[] = [],
+    subregion?: string
   ): Promise<RestCountry[]> {
     const countries: RestCountry[] = [];
     let offset = 0;
@@ -57,6 +58,10 @@ export default class RestCountriesApi {
         limit: String(this.pageSize),
         offset: String(offset),
       });
+
+      if (subregion) {
+        params.set("subregion", subregion);
+      }
 
       if (fields.length > 0) {
         params.set("response_fields", fields.join(","));

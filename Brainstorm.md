@@ -56,9 +56,6 @@ General processing:
 ## 6. Documentation & Version Control
 - [ ] Clear README with instructions to run the project
 - [ ] README documents any decisions made
-- [ ] Commit to a Git repository with meaningful commit messages
-- [ ] Multiple commits showing working process (not a single monolithic commit)
-- [ ] Submit as a GitHub repo link (public, or private with access granted to recruiter email)
 
 ## Assessment Focus Areas (self-review)
 - [ ] Code Quality — clean, readable, consistent formatting, sensible names, no unnecessary complexity
@@ -69,6 +66,6 @@ General processing:
 - [ ] Output Quality — professional, usable HTML; valid CSV
 
 ## Bonus (Optional)
-- [ ] CLI argument to filter by sub-region (e.g. `--region "Northern Europe"`)
+- [x] CLI argument to filter by sub-region (`--region`/`--subregion`, e.g. `--region "Northern Europe"`)
 - [x] Search/filter input in the HTML table (live-filters + updates visible count)
 - [x] Sortable HTML table columns (click column headings; Population sorts numerically)
