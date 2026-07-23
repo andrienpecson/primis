@@ -1,4 +1,5 @@
 import RestCountriesApi from "./src/RestCountriesApi.ts";
+import { processCountries } from "./src/transform.ts";
 import { REGION } from "./src/config.ts";
 
 const EXIT_SUCCESS = 0;
@@ -18,8 +19,11 @@ const COUNTRY_FIELDS = [
 async function main(): Promise<void> {
   const region = REGION ?? DEFAULT_REGION;
   const api = new RestCountriesApi();
+
   const countries = await api.fetchCountriesByRegion(region, COUNTRY_FIELDS);
-  console.log(`Fetched ${countries.length} countries from region "${region}".`);
+  const rows = processCountries(countries);
+
+  console.log(`Fetched ${rows.length} countries from region "${region}".`);
 }
 
 main()

@@ -87,6 +87,8 @@ Keep `index.ts` as thin orchestration.
   `offset` until `meta.more` is false.
 - Fields consumed: `name.common`, `capital[0]`, `population`, `languages`,
   `currencies`, `flags.png`. See the field-mapping table in `Brainstorm.md`.
-  NOTE: the exact v5 country-object shape has not yet been eyeballed against live
-  data — `src/types.ts` currently mirrors the v3.1 shape and may need adjusting
-  once the processing step runs against real objects.
+  The v5 object shape has been verified against live data and is modelled in
+  `src/types.ts`. Real v5 paths (differ from the brief's v3.1 paths):
+  `names.common`, `capitals[0].name`, `population`, `languages[].name`,
+  `currencies[0].name`/`.symbol`, `flag.url_png`. Extraction/transform lives in
+  `src/transform.ts`, which trims each country to a flat `CountryRow`.

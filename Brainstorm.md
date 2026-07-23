@@ -20,17 +20,17 @@ A checklist of all split requirement items from the assessment brief.
 - [x] Exit with a non-zero code on failure
 
 ## 2. Data Processing
-Extract and transform the following fields per country:
-- [ ] **Country Name** — from `name.common`
-- [ ] **Capital** — from `capital[0]`; handle countries with no capital
-- [ ] **Population** — from `population`; format with commas (e.g. `1,234,567`)
-- [ ] **Languages** — from `languages`; join all values with a comma and space
-- [ ] **Currency** — from `currencies`; display name + symbol of first currency (e.g. `Euro (€)`); handle missing data
-- [ ] **Flag** — from `flags.png`; HTML only, rendered as `<img>` 32px wide
+Extract and transform the following fields per country (v5 paths differ from the brief's v3.1 paths — see `src/transform.ts`):
+- [x] **Country Name** — from `names.common`
+- [x] **Capital** — from `capitals[0].name`; handles countries with no capital
+- [x] **Population** — from `population`; formatted with commas (e.g. `1,234,567`)
+- [x] **Languages** — from `languages[].name`; joined with a comma and space
+- [x] **Currency** — from `currencies[0]`; displays name + symbol (e.g. `Euro (€)`); handles missing data
+- [x] **Flag** — from `flag.url_png`; carried on the row for the HTML `<img>` (CSV excludes it)
 
 General processing:
-- [ ] Sort results alphabetically by country name
-- [ ] Handle missing/malformed data defensively with sensible fallbacks (e.g. `N/A`)
+- [x] Sort results alphabetically by country name (case-insensitive)
+- [x] Handle missing/malformed data defensively with sensible fallbacks (`N/A`)
 
 ## 3. HTML Output
 - [ ] Generate `countries.html` in an `/output` directory
