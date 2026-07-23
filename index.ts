@@ -33,11 +33,10 @@ const VALID_SUBREGIONS = [
 function parseCliOptions(): { subregion?: string } {
   const { values } = parseArgs({
     options: {
-      region: { type: "string" },
       subregion: { type: "string" },
     },
   });
-  const subregion = (values.subregion ?? values.region)?.trim() || undefined;
+  const subregion = values.subregion?.trim() || undefined;
   return { subregion };
 };
 

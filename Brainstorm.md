@@ -54,8 +54,8 @@ General processing:
 - [x] Exit with code 1 on failure
 
 ## 6. Documentation & Version Control
-- [ ] Clear README with instructions to run the project
-- [ ] README documents any decisions made
+- [x] Clear README with instructions to run the project (setup + all commands)
+- [x] README documents any decisions made (v5 API, native TS, no runtime deps, etc.)
 
 ## Assessment Focus Areas (self-review)
 - [ ] Code Quality — clean, readable, consistent formatting, sensible names, no unnecessary complexity

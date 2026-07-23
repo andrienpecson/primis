@@ -1,6 +1,27 @@
 import { setTimeout as sleep } from "node:timers/promises";
 import { API_BASE_URL, API_KEY } from "./config.ts";
-import type { RestCountry } from "./types.ts";
+
+// Shape of a country from the REST Countries v5 API. Differs from the v3.1 shape
+// in the brief (e.g. `names` not `name`; `capitals`/`languages`/`currencies` are
+// arrays; `flag.url_png`). Every field is optional so missing/malformed data can
+// be handled defensively; only the fields the report consumes are modelled.
+export interface RestCountry {
+  names?: {
+    common?: string;
+    official?: string;
+  };
+  capitals?: Array<{ name?: string }>;
+  population?: number;
+  languages?: Array<{ name?: string }>;
+  currencies?: Array<{ name?: string; symbol?: string; code?: string }>;
+  flag?: {
+    url_png?: string;
+    url_svg?: string;
+    emoji?: string;
+  };
+  region?: string;
+  subregion?: string;
+}
 
 interface CountriesPage {
   data?: { objects?: RestCountry[] };
