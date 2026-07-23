@@ -33,25 +33,25 @@ General processing:
 - [x] Handle missing/malformed data defensively with sensible fallbacks (`N/A`)
 
 ## 3. HTML Output
-- [ ] Generate `countries.html` in an `/output` directory
-- [ ] Single HTML table with a header row + one row per country
-- [ ] CSS styling: alternating row colours
-- [ ] CSS styling: header background colour
-- [ ] CSS styling: reasonable padding (clean, readable)
-- [ ] Page has a `<title>`
-- [ ] Page has a heading
-- [ ] Visible timestamp showing when the report was generated
+- [x] Generate `countries.html` in an `/output` directory
+- [x] Single HTML table with a header row + one row per country
+- [x] CSS styling: alternating row colours (`tbody tr:nth-child(even)`)
+- [x] CSS styling: header background colour
+- [x] CSS styling: reasonable padding (clean, readable)
+- [x] Page has a `<title>`
+- [x] Page has a heading (`<h1>`)
+- [x] Visible timestamp showing when the report was generated
 
 ## 4. CSV Output
-- [ ] Generate `countries.csv` in the same `/output` directory
-- [ ] Same data as the HTML table, excluding the flag image
-- [ ] First row is a header row
-- [ ] Properly escape fields containing commas (wrap in double quotes)
+- [x] Generate `countries.csv` in the same `/output` directory
+- [x] Same data as the HTML table, excluding the flag image
+- [x] First row is a header row
+- [x] Properly escape fields containing commas (also quotes/newlines, RFC 4180)
 
 ## 5. CLI Behaviour
-- [ ] Print a completion summary to console (e.g. `Fetched 44 countries. Files written to /output.`)
-- [ ] Exit with code 0 on success
-- [ ] Exit with code 1 on failure
+- [x] Print a completion summary to console (count + files written to `output/`)
+- [x] Exit with code 0 on success
+- [x] Exit with code 1 on failure
 
 ## 6. Documentation & Version Control
 - [ ] Clear README with instructions to run the project
@@ -70,5 +70,5 @@ General processing:
 
 ## Bonus (Optional)
 - [ ] CLI argument to filter by sub-region (e.g. `--region "Northern Europe"`)
-- [ ] Search/filter input in the HTML table
-- [ ] Sortable HTML table columns (click column headings)
+- [x] Search/filter input in the HTML table (live-filters + updates visible count)
+- [x] Sortable HTML table columns (click column headings; Population sorts numerically)

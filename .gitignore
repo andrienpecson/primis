@@ -6,3 +6,4 @@ output/
 # Secrets — never commit real credentials
 .env
 .env.local
+./output

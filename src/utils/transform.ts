@@ -1,4 +1,4 @@
-import type { RestCountry } from "./types.ts";
+import type { RestCountry } from "../types.ts";
 
 export interface CountryRow {
   name: string;

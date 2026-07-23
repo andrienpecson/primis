@@ -1,5 +1,8 @@
 import RestCountriesApi from "./src/RestCountriesApi.ts";
-import { processCountries } from "./src/transform.ts";
+import { processCountries } from "./src/utils/transform.ts";
+import { toCsv } from "./src/utils/csv.ts";
+import { toHtml } from "./src/utils/markup.ts";
+import { writeOutputFile, OUTPUT_DIR } from "./src/utils/output.ts";
 import { REGION } from "./src/config.ts";
 
 const EXIT_SUCCESS = 0;
@@ -23,7 +26,15 @@ async function main(): Promise<void> {
   const countries = await api.fetchCountriesByRegion(region, COUNTRY_FIELDS);
   const rows = processCountries(countries);
 
-  console.log(`Fetched ${rows.length} countries from region "${region}".`);
+  const written: string[] = [];
+  written.push(await writeOutputFile("countries.html", toHtml(rows)));
+  written.push(await writeOutputFile("countries.csv", toCsv(rows)));
+
+  console.log(`\nFetched ${rows.length} countries from region "${region}".`);
+  console.log(`Files written to ${OUTPUT_DIR}/:`);
+  for (const filePath of written) {
+    console.log(`  - ${filePath}`);
+  }
 }
 
 main()
